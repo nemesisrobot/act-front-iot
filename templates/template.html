@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Genbu-IoT</title>
+    <link rel="stylesheet" type="text/css"  href="/static/css/estilo.css" />  
+    <link rel="stylesheet" type="text/css"  href="/static/css/formataform.css" />    
+
+  
+  </head>
+  <body>
+      <div class="menu-container">
+          <ul class="menu clearfix">
+              <li><a href="http://localhost:5005/">Home</a>
+              <li><a href="http://localhost:5005/notas">Corte/Religa</a></li>
+              <li><a href="http://localhost:5005/statusdispositivos">Status Dispositivos</a></li>
+          </ul>
+      </div>
+    <div class="container">
+      {% block container %}{% endblock %}
+    </div>
+  </body>
+</html>
