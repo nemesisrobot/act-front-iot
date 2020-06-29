@@ -1,0 +1,14 @@
+{% extends 'template.html' %}
+{% block container %}
+    <form action="http://localhost:5005/efetuacadastrodispositivo" method = "post">
+        
+        <br>
+        <fieldset class="nd">
+            <legend>Cadastro de Dispositivos:</legend>
+            <br>
+            MAC Device: <input type="text" name="macid">
+            Endereço: <input type="text" name="address">
+            <input type="submit" value="Salvar">
+        </fieldset>
+    </form>
+{% endblock %}

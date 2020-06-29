@@ -1,0 +1,23 @@
+{% extends 'template.html' %}
+{% block container %}
+    <form action = "http://localhost:5005/efetuacadastrocliente" method = "post">
+        
+        <br>
+        <fieldset class="nd">
+            <legend>Cadastro de Cliente:</legend>
+            <br>
+            Nome: <input type="text" name="firstname">
+            Sobrenome: <input type="text" name="lastname"><br><br>
+            Endereço: <input type="text" name="address">
+            CNPJ/CPF: <input type="text" name="document"><br><br>
+            Contato 1: <input type="text" name="contact1">
+            Contato 2: <input type="text" name="contact2"><br><br>
+            Login: <input type="text" name="username">
+            Senha: <input type="text" name="password">
+
+            <br><br>
+            <input type="submit" value="Salvar">
+        </fieldset>
+    </form>
+
+    {% endblock %}
