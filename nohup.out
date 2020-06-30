@@ -1,0 +1,28 @@
+ * Serving Flask app "__init__" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:5005/ (Press CTRL+C to quit)
+192.168.15.15 - - [30/Jun/2020 17:13:13] "[37mGET / HTTP/1.1[0m" 200 -
+192.168.15.15 - - [30/Jun/2020 17:13:13] "[37mGET /static/css/formataform.css HTTP/1.1[0m" 200 -
+192.168.15.15 - - [30/Jun/2020 17:13:13] "[37mGET /static/css/estilo.css HTTP/1.1[0m" 200 -
+192.168.15.15 - - [30/Jun/2020 17:13:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.15.15 - - [30/Jun/2020 17:13:15] "[37mGET / HTTP/1.1[0m" 200 -
+192.168.15.15 - - [30/Jun/2020 17:13:17] "[37mGET /notas HTTP/1.1[0m" 200 -
+192.168.15.15 - - [30/Jun/2020 17:13:27] "[32mPOST /cortereliga HTTP/1.1[0m" 302 -
+192.168.15.15 - - [30/Jun/2020 17:13:27] "[37mGET /cortereliga/201/%7B%22Codigo%22:%225efb9ce7830610350756e6e5%22,%22Mensagens%22:%22OK%22%7D HTTP/1.1[0m" 200 -
+192.168.15.15 - - [30/Jun/2020 17:17:24] "[37mGET /notas HTTP/1.1[0m" 200 -
+192.168.15.15 - - [30/Jun/2020 17:17:33] "[32mPOST /cortereliga HTTP/1.1[0m" 302 -
+192.168.15.15 - - [30/Jun/2020 17:17:33] "[37mGET /cortereliga/201/%7B%22Codigo%22:%225efb9ddd830610350756e706%22,%22Mensagens%22:%22OK%22%7D HTTP/1.1[0m" 200 -
+192.168.15.11 - - [30/Jun/2020 17:20:28] "[37mGET / HTTP/1.1[0m" 200 -
+192.168.15.11 - - [30/Jun/2020 17:20:30] "[37mGET / HTTP/1.1[0m" 200 -
+192.168.15.11 - - [30/Jun/2020 17:20:33] "[37mGET /notas HTTP/1.1[0m" 200 -
+192.168.15.11 - - [30/Jun/2020 17:20:42] "[32mPOST /cortereliga HTTP/1.1[0m" 302 -
+192.168.15.11 - - [30/Jun/2020 17:20:42] "[37mGET /cortereliga/201/%7B%22Codigo%22:%225efb9e9a830610350756e71b%22,%22Mensagens%22:%22OK%22%7D HTTP/1.1[0m" 200 -
+192.168.15.11 - - [30/Jun/2020 17:33:56] "[37mGET /notas HTTP/1.1[0m" 200 -
+192.168.15.11 - - [30/Jun/2020 17:34:06] "[32mPOST /cortereliga HTTP/1.1[0m" 302 -
+192.168.15.11 - - [30/Jun/2020 17:34:06] "[37mGET /cortereliga/201/%7B%22Codigo%22:%225efba1be830610350756e76c%22,%22Mensagens%22:%22OK%22%7D HTTP/1.1[0m" 200 -
+192.168.15.11 - - [30/Jun/2020 17:51:12] "[37mGET /notas HTTP/1.1[0m" 200 -
+192.168.15.11 - - [30/Jun/2020 17:51:21] "[32mPOST /cortereliga HTTP/1.1[0m" 302 -
+192.168.15.11 - - [30/Jun/2020 17:51:21] "[37mGET /cortereliga/201/%7B%22Codigo%22:%225efba5c9830610350756e7d5%22,%22Mensagens%22:%22OK%22%7D HTTP/1.1[0m" 200 -
