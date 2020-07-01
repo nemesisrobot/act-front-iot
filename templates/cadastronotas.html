@@ -1,12 +1,17 @@
 {% extends 'template.html' %}
 {% block container %}
+<script type="text/javaScript">
+function Trim(str){
+  return str.replace(/^\s+|\s+$/g,"");
+}
+</script>
 <form action="http://{{localhost}}:5005/cortereliga" method = "post">
         
     <br>
     <fieldset class="nd">
         <legend>Cadastro de Dispositivos:</legend>
         <br>
-        Dispositivos: <input type="text" name="macid">
+        Dispositivos: <input type="text" name="macid" required>
         <select name="acao">
             <option value="turnoon">Ligar</option>
             <option value="turnoff">Desligar</option>
