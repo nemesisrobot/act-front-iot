@@ -7,6 +7,10 @@ import ast
 path.append('/scripts')
 from flask import Flask , render_template, request, redirect, url_for
 from scripts.enviorequisicoes import EnviarMensagem
+from scripts.parsermensagensservidor import ParserMensagem
+
+#instanciando classe para parser de mensagens do servidor
+parser = ParserMensagem()
 
 app = Flask(__name__)
 
@@ -28,25 +32,30 @@ def cadastraNotas():
 #end-point para envio de notas de corte e religa
 @app.route('/cortereliga', methods=['POST'])
 def envioCorteReliga():
-    reposta = 500
+    #reposta = 500
     disparo_mensagem = EnviarMensagem() 
     if(request.form['acao']=='turnoon'):
         resposta = disparo_mensagem.envio('{}/{}'.format(HOSTBACK,'notaservico'), {'device':request.form['macid'],'corte':1,'data':'{}'.format(disparo_mensagem.dataEnvio())})
     else:
         resposta = disparo_mensagem.envio('{}/{}'.format(HOSTBACK,'notaservico'), {'device':request.form['macid'],'corte':0,'data':'{}'.format(disparo_mensagem.dataEnvio())})
 
-    mensagem =  (resposta.content).decode()
-    mensagem = mensagem.replace('\n','')
+    #mensagem =  (resposta.content).decode()
+    #mensagem = mensagem.replace('\n','')
 
-    return redirect('/cortereliga/{}/{}'.format(str(resposta.status_code),mensagem))
+    return redirect('/cortereliga/{}/{}'.format(str(resposta.status_code),parser.buteParastring(resposta.content)))
 
 @app.route('/cortereliga/<string:codigo>/<string:mensagem>')
-def repsotaservidor(codigo,mensagem):
-    dadosjson = ast.literal_eval(mensagem)
+def repostaservidor(codigo,mensagem):
+    dadosjson = parser.stringParadicionario(mensagem)
 
     if int(codigo) == 201:
         codigorequisicao = 'Nota cadastrada com sucesso'
-    return render_template('resultado.html', nota =dadosjson['Codigo'] , resposta = codigorequisicao) 
+        return render_template('resultadosucesso.html', nota =dadosjson['Codigo'] , resposta = codigorequisicao) 
+
+    if int(codigo) == 400:
+        dadosjson = ast.literal_eval(dadosjson)
+        return render_template('resultadofalha.html', resposta = dadosjson['mensagem'])
+
 
 
 #end-point para status do dispostivo
@@ -56,4 +65,4 @@ def pesquisaStatus():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=5005)
+    app.run(host='0.0.0.0',port=5005, debug=True)
