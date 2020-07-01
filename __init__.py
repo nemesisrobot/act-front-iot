@@ -34,6 +34,10 @@ def cadastraNotas():
 def envioCorteReliga():
     #reposta = 500
     disparo_mensagem = EnviarMensagem() 
+    
+    if (request.form['macid']).lstrip()=='':
+        return render_template('resultadofalha.html', resposta = "Nota não criada.\n Evite colocar espaços ou caracteres especiais!!!")
+
     if(request.form['acao']=='turnoon'):
         resposta = disparo_mensagem.envio('{}/{}'.format(HOSTBACK,'notaservico'), {'device':request.form['macid'],'corte':1,'data':'{}'.format(disparo_mensagem.dataEnvio())})
     else:
