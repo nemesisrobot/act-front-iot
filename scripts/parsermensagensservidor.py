@@ -7,9 +7,9 @@ import ast
 class ParserMensagem:
 
 	#parser de byte para string
-	def buteParastring(self, mensagem):
+	def byteParastring(self, mensagem):
 		mensagem = mensagem.decode()
-		mensagem = mensagem.replace('\n','')
+		mensagem = (mensagem.replace('\n','')).replace('null','3')
 		return mensagem
 
 	#parser de string para dicionario

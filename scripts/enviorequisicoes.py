@@ -24,4 +24,10 @@ class EnviarMensagem:
 		hora = datetime.strptime(dataatual, '%Y-%m-%d %H:%M:%S').time()
 		return '{} {}'.format(str(data.strftime('%Y-%m-%d')),str(hora.strftime('%H:%M:%S')))
 
+	#método para fazer get no servidor
+	def coletardadosservidor(self, url_callback):
+		return rq.get(url=url_callback)
+
+
+
 

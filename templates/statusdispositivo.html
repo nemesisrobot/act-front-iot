@@ -1,0 +1,17 @@
+{% extends 'template.html' %}
+{% block container %}
+<h3><center>Status do Dispositivo</center></h3>
+ <table style="width:100%">
+  <tr>
+    <th>Dispositivo</th>
+    <th>Status</th>
+    <th>Ultima Comunicação</th>
+  </tr>
+  <tr>
+    <td><center>{{ dispostivo }}</center></td>
+    <td><center>{{ estado }}</center></td>
+    <td><center>{{ datacomunicacao }}</center></td>
+  </tr>
+ 
+</table> 
+{% endblock %}

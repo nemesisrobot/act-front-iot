@@ -1,10 +1,10 @@
 {% extends 'template.html' %}
 {% block container %}
-<form>
+<form action="http://{{localhost}}:5005/pegandostatus" method="post">
 	<br>
 	<fieldset>
 		<label>Dispositivo</label>
-		<input type="text" name="dispositivo">
+		<input type="text" name="dispositivo" required>
 		<input type="submit" value="Pesquisar">
 	</fieldset>
 </form>
