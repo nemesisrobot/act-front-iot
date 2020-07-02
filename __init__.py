@@ -20,6 +20,9 @@ HOSTBACK = 'http://192.168.15.15:5000'
 #endereço do computador a ser acesso para web application
 HOST = '192.168.15.15'
 
+#lista de status
+
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -43,10 +46,8 @@ def envioCorteReliga():
     else:
         resposta = disparo_mensagem.envio('{}/{}'.format(HOSTBACK,'notaservico'), {'device':request.form['macid'],'corte':0,'data':'{}'.format(disparo_mensagem.dataEnvio())})
 
-    #mensagem =  (resposta.content).decode()
-    #mensagem = mensagem.replace('\n','')
 
-    return redirect('/cortereliga/{}/{}'.format(str(resposta.status_code),parser.buteParastring(resposta.content)))
+    return redirect('/cortereliga/{}/{}'.format(str(resposta.status_code),parser.byteParastring(resposta.content)))
 
 @app.route('/cortereliga/<string:codigo>/<string:mensagem>')
 def repostaservidor(codigo,mensagem):
@@ -60,13 +61,36 @@ def repostaservidor(codigo,mensagem):
         dadosjson = ast.literal_eval(dadosjson)
         return render_template('resultadofalha.html', resposta = dadosjson['mensagem'])
 
-
-
 #end-point para status do dispostivo
-@app.route('/statusdispositivos')
+@app.route('/consultastatusdispositivos')
 def pesquisaStatus():
-    return render_template('status.html') 
+    return render_template('consultastatus.html', localhost = HOST) 
+
+#end-point para consultar status do disposito no servidor
+@app.route('/pegandostatus', methods=['POST'])
+def pegandostatusservidor():
+
+    #checando se mensagem está em branco
+    if (request.form['dispositivo']).lstrip()=='':
+         return render_template('resultadofalha.html', resposta = "Evite colocar espaços ou caracteres especiais!!!")
+
+    dispostivo_status = EnviarMensagem() 
+    dadosjson = dispostivo_status.coletardadosservidor('{}{}{}'.format(HOSTBACK,'/dispositivostatus/',request.form['dispositivo']))
+    dadosjson = parser.byteParastring(dadosjson.content)
+
+    if int(parser.stringParadicionario(dadosjson)['corte']) == 3:
+         return render_template('resultadofalha.html', resposta = "Dispostivo não localizado!!!")
+
+    if int(parser.stringParadicionario(dadosjson)['corte']) == 0:
+        return render_template('statusdispositivo.html', dispostivo=parser.stringParadicionario(dadosjson)['device'],
+            estado='Desligado',
+            datacomunicacao=parser.stringParadicionario(dadosjson)['data'])
+    else:
+        return render_template('statusdispositivo.html', dispostivo=parser.stringParadicionario(dadosjson)['device'],
+            estado='Ligado',
+            datacomunicacao=parser.stringParadicionario(dadosjson)['data'])
+   
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=5005, debug=True)
+    app.run(host='0.0.0.0',port=5005)
