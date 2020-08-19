@@ -1,21 +1,26 @@
 #Autor:Diego Silva
-#Data:27/01/2020
+#Data:27/07/2020
 #Descrição:Script para criação de rotas de cadastro
-#biblioteca flask e flask_restful para tabalhar com micro serviços
+
 from sys import path
 import ast
 path.append('/scripts')
 from flask import Flask , render_template, request, redirect, url_for
 from scripts.enviorequisicoes import EnviarMensagem
 from scripts.parsermensagensservidor import ParserMensagem
+from scripts.leituraarquivos import AcessoConfiguracao
 
 #instanciando classe para parser de mensagens do servidor
 parser = ParserMensagem()
 
 app = Flask(__name__)
 
+#lendo arquivo de configuração
+arquivoconf = AcessoConfiguracao('static/js/conf/')
+configuracao = arquivoconf.getConfiguracao(arquivoconf.getObjetoLeitura(),'config.json')
+
 #endereço do servidor backend
-HOSTBACK = 'http://192.168.15.15:5000'
+HOSTBACK = 'http://{}:{}'.format(configuracao['host-server'],configuracao['port'])
 
 #endereço do computador a ser acesso para web application
 HOST = '192.168.15.15'
@@ -90,7 +95,10 @@ def pegandostatusservidor():
             estado='Ligado',
             datacomunicacao=parser.stringParadicionario(dadosjson)['data'])
    
-
+#end-point para consulta de notas
+@app.route('/consultanotas')
+def consultadenotas():
+    return render_template('consultanotas.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=5005, debug=False)
+    app.run(host='0.0.0.0',port=5005, debug=True)

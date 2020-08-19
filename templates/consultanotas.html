@@ -1,0 +1,45 @@
+{% extends 'template.html' %}
+{% block container %}
+<br>
+
+<style type="text/css">
+
+	.grid {
+  		padding: 10px;
+  		display: grid;
+    	grid-template-columns: auto auto auto;
+    	grid-gap: 10px;
+	}
+
+
+</style>
+
+
+<div>
+		<form>
+			<fieldset>
+				<legend>Consulta de Notas de Serviço</legend>
+				<label>Dispositivo</label>
+				<input type="text" name="numero" data-form-numero>
+				<button data-form-button >Pesquisar</button>
+				<button onclick="window.location.reload(false)">Limpar Grid</button>
+			</fieldset>
+
+
+		</form>
+	</div>
+	<br><br>
+	<div>
+		<fieldset>
+			<legend>Notas Pendentes</legend>
+			<div class="grid" data-list>
+		</fieldset>
+	</div>
+	   </table>
+	</div>
+	<script type="text/javascript" src="/static/js/conf/config.js"> </script>
+	<script type="text/javascript" src="/static/js/api/notas.js"> </script>
+	<script type="text/javascript" src="/static/js/consultanotas.js"> </script>
+
+	
+{% endblock %}
