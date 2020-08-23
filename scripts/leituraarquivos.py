@@ -35,6 +35,12 @@ class ArquivoConfiguracao(TrabalhaArquivos):
 	def getPorta(self, dados):
 		return dados['port']
 
+	def getFront(self, dados):
+		return dados['host-front']
+
+	def getPortFront(self, dados):
+		return dados['port-front']
+
 #classe para retorar acesso as configurações
 class AcessoConfiguracao:
 

@@ -1,14 +1,23 @@
 {% extends 'template.html' %}
 {% block container %}
-    <form action="http://localhost:5005/efetuacadastrodispositivo" method = "post">
+    <form>
         
         <br>
         <fieldset class="nd">
             <legend>Cadastro de Dispositivos:</legend>
             <br>
-            MAC Device: <input type="text" name="macid">
-            Endereço: <input type="text" name="address">
-            <input type="submit" value="Salvar">
+            <label class="device-label">Dispositivo: </label>
+            <input type="text" name="device" class="cadastro-alinha" data-form-device required><br>
+            <label class="device-label">Cliente: </label>
+            <input type="text" name="cliente" class="cadastro-alinha" data-form-client required><br>
+            <label class="device-label">Endereço: </label>
+            <input type="text" name="address" class="cadastro-alinha" data-form-address required><br>
+            <label class="device-label">Descrição</label>
+            <input type="text" name="description" class="cadastro-alinha" data-form-description required><br>
+            <button type="button" class="button salvar" data-form-button>Salvar</button>
         </fieldset>
     </form>
+    <script type="text/javascript" src="/static/js/conf/config.js"> </script>
+    <script type="text/javascript" src="/static/js/api/comunicadispositivosdados.js"> </script>
+    <script type="text/javascript" src="/static/js/dispositivoscadastrar.js"></script>
 {% endblock %}

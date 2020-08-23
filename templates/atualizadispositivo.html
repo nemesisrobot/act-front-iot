@@ -1,0 +1,26 @@
+{% extends "template.html" %}
+{% block container %}
+
+	<div>
+		<form>
+		<fieldset>
+			<legend>Atualizar Dispositivo:</legend>
+            <br>
+            <label class="device-label">Dispositivo: </label>
+            <input type="text" name="device" class="cadastro-alinha" value={{dispositvo}} data-form-device><br>
+            <label class="device-label">Cliente: </label>
+            <input type="text" name="cliente" class="cadastro-alinha" value={{cliente}} data-form-client><br>
+            <label class="device-label">Endereço: </label>
+            <input type="text" name="address" class="cadastro-alinha" value={{endereco}} data-form-address><br>
+            <label class="device-label">Descrição: </label>
+            <input type="text" name="description" class="cadastro-alinha" value={{descricao}} data-form-description><br>
+            <label class="device-label">Chave: </label>
+            <input type="text" name="key" class="cadastro-alinha" value={{chave}} data-form-key disabled><br>
+            <button type="button" class="button salvar" data-form-button>Salvar</button>
+         </fieldset>
+		</form>
+	</div>
+	<script type="text/javascript" src="/static/js/conf/config.js"> </script>
+    <script type="text/javascript" src="/static/js/api/comunicadispositivosdados.js"> </script>
+    <script type="text/javascript" src="/static/js/dispositivosatualiza.js"></script>
+{% endblock %}

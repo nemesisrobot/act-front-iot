@@ -1,12 +1,12 @@
 {% extends 'template.html' %}
 {% block container %}
-<form action="http://{{localhost}}:5005/pegandostatus" method="post">
+<form action="{{localhost}}/pegandostatus" method="post">
 	<br>
 	<fieldset>
 		<legend>Consulta Status</legend>
 		<label>Dispositivo</label>
-		<input type="search" name="dispositivo" required>
-		<input type="submit" value="Pesquisar">
+		<input type="text" name="dispositivo" required>
+		<input type="submit" value="Pesquisar" class="button pesquisar">
 	</fieldset>
 </form>
 
