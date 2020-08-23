@@ -1,4 +1,6 @@
 {
 	"host-server":"192.168.15.15",
-	"port":5000
+	"port":5000,
+	"host-front":"192.168.15.15",
+	"port-front":5005
 }

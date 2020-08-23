@@ -22,8 +22,8 @@ configuracao = arquivoconf.getConfiguracao(arquivoconf.getObjetoLeitura(),'confi
 #endereço do servidor backend
 HOSTBACK = 'http://{}:{}'.format(configuracao['host-server'],configuracao['port'])
 
-#endereço do computador a ser acesso para web application
-HOST = '192.168.15.15'
+HOSTFRONT = 'http://{}:{}'.format(configuracao['host-front'],configuracao['port-front'])
+
 
 #lista de status
 
@@ -35,7 +35,7 @@ def index():
 
 @app.route('/notas')
 def cadastraNotas():
-    return render_template('cadastronotas.html', localhost = HOST) 
+    return render_template('cadastronotas.html', localhost = HOSTFRONT) 
 
 #end-point para envio de notas de corte e religa
 @app.route('/cortereliga', methods=['POST'])
@@ -69,7 +69,7 @@ def repostaservidor(codigo,mensagem):
 #end-point para status do dispostivo
 @app.route('/consultastatusdispositivos')
 def pesquisaStatus():
-    return render_template('consultastatus.html', localhost = HOST) 
+    return render_template('consultastatus.html', localhost = HOSTFRONT) 
 
 #end-point para consultar status do disposito no servidor
 @app.route('/pegandostatus', methods=['POST'])
@@ -99,6 +99,28 @@ def pegandostatusservidor():
 @app.route('/consultanotas')
 def consultadenotas():
     return render_template('consultanotas.html')
+
+#end-point para tela de consulta dispositivos
+@app.route('/dispositivos')
+def dispositivos():
+    return render_template('dispositivos.html', localhost=HOSTFRONT)
+
+#end-point para tela de cadasta dispisitvos
+@app.route('/cadastrodispositivos')
+def cadastrodispositivo():
+    return render_template('cadastrodispositivo.html')
+
+@app.route('/atualizadispositivo/<string:device>')
+def atualizadispositivo(device):
+    consulta = EnviarMensagem() 
+    dados=consulta.coletardadosservidor('{}/dispositivoconsultaexclui/CONSULTA/{}'.format(HOSTBACK,device))
+    dados = parser.stringParadicionario(parser.byteParastring(dados.content))
+    return render_template('atualizadispositivo.html',
+        dispositvo=dados['device'],
+        cliente=dados['client'],
+        endereco=dados['address'],
+        descricao=dados['description'],
+        chave=dados['key'])
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5005, debug=True)

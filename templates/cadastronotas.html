@@ -1,7 +1,7 @@
 {% extends 'template.html' %}
 {% block container %}
 
-<form action="http://{{localhost}}:5005/cortereliga" method = "post">
+<form action="{{localhost}}/cortereliga" method = "post">
         
     <br>
     <fieldset class="nd">
@@ -13,8 +13,8 @@
             <option value="turnoff">Desligar</option>
           </select>
 
-          <br><br>
-          <input type="submit" value="Salvar">
+          
+          <input type="submit" value="Salvar" class="button salvar">
     </fieldset>
 </form>
 {% endblock %}
