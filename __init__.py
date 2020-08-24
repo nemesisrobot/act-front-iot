@@ -42,10 +42,17 @@ def cadastraNotas():
 def envioCorteReliga():
     #reposta = 500
     disparo_mensagem = EnviarMensagem() 
-    
+    dados=disparo_mensagem.coletardadosservidor('{}/dispositivoconsultaexclui/CONSULTA/{}'.format(HOSTBACK,request.form['macid']))
+    dados = parser.stringParadicionario(parser.byteParastring(dados.content))
+    print(dados)
+    #print(type(dados['device']))
+
     if (request.form['macid']).lstrip()=='':
         return render_template('resultadofalha.html', resposta = "Nota não criada.\n Evite colocar espaços ou caracteres especiais!!!")
 
+    if(dados == "Dispositivo Nao Localizado"):
+         return render_template('resultadofalha.html', resposta = "Nota não criada.\n Cadastre o dispositivo!!!")
+         
     if(request.form['acao']=='turnoon'):
         resposta = disparo_mensagem.envio('{}/{}'.format(HOSTBACK,'notaservico'), {'device':request.form['macid'],'corte':1,'data':'{}'.format(disparo_mensagem.dataEnvio())})
     else:
